@@ -1,34 +1,58 @@
-package main
+package strutils
 
 import "testing"
 
 func TestReverse(t *testing.T) {
-    got := Reverse("hello")
-    want := "olleh"
-    if got != want {
-        t.Errorf("Reverse(\"hello\") = %q; want %q", got, want)
-    }
+	got := Reverse("hello")
+	want := "olleh"
+	if got != want {
+		t.Errorf("Reverse(\"hello\") = %q; want %q", got, want)
+	}
 }
 
 func TestIsPalindrome(t *testing.T) {
-    cases := map[string]bool{
-        "racecar": true,
-        "madam":   true,
-        "hello":   false,
-    }
-    for input, want := range cases {
-        if got := IsPalindrome(input); got != want {
-            t.Errorf("IsPalindrome(%q) = %v; want %v", input, got, want)
-        }
-    }
+	cases := map[string]bool{
+		"racecar": true,
+		"madam":   true,
+		"hello":   false,
+	}
+	for input, want := range cases {
+		if got := IsPalindrome(input); got != want {
+			t.Errorf("IsPalindrome(%q) = %v; want %v", input, got, want)
+		}
+	}
 }
 
 func TestCharCount(t *testing.T) {
-    got := CharCount("hello")
-    want := map[rune]int{'h': 1, 'e': 1, 'l': 2, 'o': 1}
-    for k, v := range want {
-        if got[k] != v {
-            t.Errorf("CharCount(\"hello\")[%q] = %d; want %d", k, got[k], v)
-        }
-    }
+	got := CharCount("hello")
+	want := map[rune]int{'h': 1, 'e': 1, 'l': 2, 'o': 1}
+	for k, v := range want {
+		if got[k] != v {
+			t.Errorf("CharCount(\"hello\")[%q] = %d; want %d", k, got[k], v)
+		}
+	}
+}
+
+func TestRuneCount(t *testing.T) {
+	got := RuneCount("🙂🙂")
+	want := 2
+	if got != want {
+		t.Errorf("RuneCount(%q) = %d; want %d", "🙂🙂", got, want)
+	}
+}
+
+func TestFristRune(t *testing.T) {
+	got := FirstRune("hello")
+	want := 'h'
+	if got != want {
+		t.Errorf("FirstRune(%q) = %q; want %q", "hello", string(got), string(want))
+	}
+}
+
+func TestLastRune(t *testing.T) {
+	got := LastRune("Maddox")
+	want := 'x'
+	if got != want {
+		t.Errorf("LastRune(%q)) = %q; want %q", "Maddox", string(got), string(want))
+	}
 }

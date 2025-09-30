@@ -1,4 +1,4 @@
-package main
+package strutils
 
 // Reverse returns the reverse of the given string.
 func Reverse(s string) string {
