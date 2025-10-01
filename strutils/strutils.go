@@ -47,3 +47,26 @@ func FirstRune(s string) rune {
 func LastRune(s string) rune {
 	return []rune(s)[len([]rune(s))-1]
 }
+
+// NthRune returns the Nth rune of a string
+func NthRune(s string, n int) rune {
+	runes := []rune(s)
+	return runes[n]
+}
+
+// SubstringRunes returns a substring
+// starting from the 'start' index up to but not including the 'end' index.
+
+func SubstringRunes(s string, start, end int) string {
+	runes := []rune(s)
+	return string(runes[start:end])
+}
+
+// ToUpper conveert first rune to upper case
+func ToUpper(s string) string {
+	runes := []rune(s)
+	if runes[0] >= 'a' && runes[0] <= 'z' {
+		runes[0] = runes[0] - 32
+	}
+	return string(runes)
+}

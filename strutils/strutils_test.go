@@ -56,3 +56,27 @@ func TestLastRune(t *testing.T) {
 		t.Errorf("LastRune(%q)) = %q; want %q", "Maddox", string(got), string(want))
 	}
 }
+
+func TestNthRune(t *testing.T) {
+	got := NthRune("hello", 1)
+	want := 'e'
+	if got != want {
+		t.Errorf("NthRune(%q, %d) = %q; want %q", "hello", 1, string(got), string(want))
+	}
+}
+
+func TestSubstringRunes(t *testing.T) {
+	got := SubstringRunes("hello", 1, 4)
+	want := "ell"
+	if got != want {
+		t.Errorf("SubstringRunes(%q, %d, %d) = %q; want %q", "hello", 1, 4, got, want)
+	}
+}
+
+func TestToUpper(t *testing.T) {
+	got := ToUpper("hello")
+	want := "Hello"
+	if got != want {
+		t.Errorf("ToUpper(%q)= %q want %q", "hello", string(got), string(want))
+	}
+}
