@@ -70,3 +70,26 @@ func ToUpper(s string) string {
 	}
 	return string(runes)
 }
+
+// ToSum return the indexes of two numbers that add up to the target.
+func TwoSum(n []int, t int) []int {
+	seen := make(map[int]int)
+	for i, num := range n {
+		complement := t - num
+		if j, ok := seen[complement]; ok {
+			return []int{j, i}
+		}
+		seen[num] = i
+	}
+	return nil
+}
+
+// Given a string, count how many times each rune appears, Return a map[rune]int.
+
+func FrequencyCounter(s string) map[rune]int {
+	count := make(map[rune]int)
+	for _, r := range s {
+		count[r]++
+	}
+	return count
+}

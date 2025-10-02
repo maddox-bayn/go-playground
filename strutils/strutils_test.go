@@ -1,6 +1,9 @@
 package strutils
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestReverse(t *testing.T) {
 	got := Reverse("hello")
@@ -78,5 +81,21 @@ func TestToUpper(t *testing.T) {
 	want := "Hello"
 	if got != want {
 		t.Errorf("ToUpper(%q)= %q want %q", "hello", string(got), string(want))
+	}
+}
+
+func TestTwoSum(t *testing.T) {
+	got := TwoSum([]int{2, 7, 11, 15}, 9)
+	want := []int{0, 1}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("TwoSum() = %v; want %v", got, want)
+	}
+}
+
+func TestFrequencyCounter(t *testing.T) {
+	got := FrequencyCounter("hello")
+	want := map[rune]int{'h': 1, 'e': 1, 'l': 2, 'o': 1}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("FrequencyCounter() = %v, want %v", got, want)
 	}
 }
