@@ -122,3 +122,21 @@ func TestFrequencyCounter(t *testing.T) {
 		t.Errorf("FrequencyCounter() = %v, want %v", got, want)
 	}
 }
+func TestIsValidParentheses(t *testing.T) {
+	test := []struct {
+		input string
+		want  bool
+	}{
+		{"()", true},
+		{"({})", true},
+		{"(])", false},
+		{"((())", false},
+		{"()[]{}", true},
+	}
+	for _, tt := range test {
+		got := IsValidParentheses(tt.input)
+		if got != tt.want {
+			t.Errorf("IsValidParentheses(%q) = %v; want %v", tt.input, got, tt.want)
+		}
+	}
+}

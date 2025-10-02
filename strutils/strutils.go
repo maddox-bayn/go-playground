@@ -93,3 +93,22 @@ func FrequencyCounter(s string) map[rune]int {
 	}
 	return count
 }
+func IsValidParentheses(s string) bool {
+	stack := []rune{}
+	pairs := map[rune]rune{')': '(', ']': '[', '}': '{'}
+
+	for _, char := range s {
+		// check for closing bracket
+		if open, ok := pairs[char]; ok {
+			// check if stack empty OR top not matching
+			if len(stack) == 0 || stack[len(stack)-1] != open {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		} else {
+			// opening to stack
+			stack = append(stack, char)
+		}
+	}
+	return len(stack) == 0
+}
