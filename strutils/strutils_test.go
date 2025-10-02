@@ -1,9 +1,32 @@
 package strutils
 
 import (
-	"reflect"
 	"testing"
 )
+
+func equalSlice(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func equalmap(a, b map[rune]int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for k, v := range a {
+		if b[k] != v {
+			return false
+		}
+	}
+	return true
+}
 
 func TestReverse(t *testing.T) {
 	got := Reverse("hello")
@@ -87,7 +110,7 @@ func TestToUpper(t *testing.T) {
 func TestTwoSum(t *testing.T) {
 	got := TwoSum([]int{2, 7, 11, 15}, 9)
 	want := []int{0, 1}
-	if !reflect.DeepEqual(got, want) {
+	if !equalSlice(got, want) {
 		t.Errorf("TwoSum() = %v; want %v", got, want)
 	}
 }
@@ -95,7 +118,7 @@ func TestTwoSum(t *testing.T) {
 func TestFrequencyCounter(t *testing.T) {
 	got := FrequencyCounter("hello")
 	want := map[rune]int{'h': 1, 'e': 1, 'l': 2, 'o': 1}
-	if !reflect.DeepEqual(got, want) {
+	if !equalmap(got, want) {
 		t.Errorf("FrequencyCounter() = %v, want %v", got, want)
 	}
 }
