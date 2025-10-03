@@ -112,3 +112,20 @@ func IsValidParentheses(s string) bool {
 	}
 	return len(stack) == 0
 }
+
+func SlidingWindowMax(n []int, k int) []int {
+	if len(n) == 0 || k <= 0 || k > len(n) {
+		return []int{}
+	}
+	var result []int
+	for i := 0; i <= len(n)-k; i++ {
+		max := n[i]
+		for j := i; j < i+k; i++ {
+			if max < n[j] {
+				max = n[j]
+			}
+			result = append(result, max)
+		}
+	}
+	return result
+}

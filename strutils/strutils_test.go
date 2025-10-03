@@ -140,3 +140,11 @@ func TestIsValidParentheses(t *testing.T) {
 		}
 	}
 }
+
+func TestSlidingWindowMax(t *testing.T) {
+	got := SlidingWindowMax([]int{1, 3, -1, -3, 5, 3, 6, 7}, 3)
+	want := []int{3, 3, 5, 5, 6, 7}
+	if !equalSlice(got, want) {
+		t.Errorf("SlidinWindowMax()= %v want: %v", got, want)
+	}
+}
