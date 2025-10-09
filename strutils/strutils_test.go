@@ -148,3 +148,25 @@ func TestSlidingWindowMax(t *testing.T) {
 		t.Errorf("SlidinWindowMax()= %v want: %v", got, want)
 	}
 }
+
+func TestSlidingWindowMaxEdgeCases(t *testing.T) {
+	tests := []struct {
+		input []int
+		k     int
+		want  []int
+	}{
+		{[]int{}, 3, []int{}},                  // empty array
+		{[]int{1, 2}, 3, []int{}},              // k greater than array length
+		{[]int{1, 2, 3}, 0, []int{}},           // k is zero
+		{[]int{1, 2, 3}, -1, []int{}},          // k is negative
+		{[]int{1, 2, 3}, 3, []int{3}},          // k equals array length
+		{[]int{1, -1, 0}, 2, []int{1, 0}},      // mixed positive and negative
+		{[]int{5, 5, 5, 5}, 2, []int{5, 5, 5}}, // all elements the same
+	}
+	for _, tt := range tests {
+		got := SlidingWindowMax(tt.input, tt.k)
+		if !equalSlice(got, tt.want) {
+			t.Errorf("SlidingWindowMax(%v, %d) = %v; want %v", tt.input, tt.k, got, tt.want)
+		}
+	}
+}

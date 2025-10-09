@@ -129,3 +129,30 @@ func SlidingWindowMax(n []int, k int) []int {
 	}
 	return result
 }
+
+func SlideWindowMUpdate(num []int, k int) []int {
+	n := len(num)
+	if n == 0 || k <= 0 || k > n {
+		return []int{}
+	}
+	result := make([]int, 0, n-k+1)
+	deque := []int{}
+
+	for i := 0; i < n; i++ {
+		// Remove indices that are out of the current window
+		if len(deque) > 0 && deque[0] <= i-k {
+			deque = deque[1:]
+		}
+		// Remove elements smaller than the current element from the back of the deque}
+		for deque[0] > 0 && num[deque[len(deque)-1]] < num[i] {
+			deque = deque[:len(deque)-1]
+		}
+		// Add the current element's index to the deque
+		deque := append(deque, i)
+		// If we've processed at least k elements, record the maximum for the current window
+		if i >= k-1 {
+			result = append(result, num[deque[0]])
+		}
+	}
+	return result
+}
